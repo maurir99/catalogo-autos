@@ -46,11 +46,11 @@ on conflict do nothing;
 Si más adelante querés sumar a otro vendedor, creale un usuario (paso 3) y repetí este paso con su email.
 
 ### 5. Conectar la página
-1. En Supabase: **Project Settings → API** (o **API Keys**). Copiá la **Project URL** y la clave **anon / public**.
+1. En Supabase tocá el botón verde **Connect** (arriba). En el código de ejemplo vas a ver la URL (`..._SUPABASE_URL=https://...supabase.co`) y la clave (`..._PUBLISHABLE_KEY=sb_publishable_...`). Copialas con el botón de copiar del recuadro.
 2. Abrí `config.js` y reemplazá `SUPABASE_URL` y `SUPABASE_ANON_KEY` con esos valores.
 3. Guardá y subí el cambio a GitHub (commit + push).
 
-> La anon key es pública por diseño. Lo que protege tus datos son los permisos del paso 2. **Nunca** pongas en `config.js` la clave `service_role`.
+> La clave publishable (o anon) es pública por diseño. Lo que protege tus datos son los permisos del paso 2. **Nunca** pongas en `config.js` la clave `service_role`.
 
 ### 6. Publicar en internet (Vercel)
 1. Entrá a [vercel.com](https://vercel.com) con tu cuenta de GitHub.
