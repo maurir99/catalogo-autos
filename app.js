@@ -26,7 +26,11 @@ const fotoUrl = path => /^https?:|^data:|^blob:/.test(path) ? path : sb.storage.
 
 /* ---------- Formatos ---------- */
 const fmtNum = n => Number(n).toLocaleString("es-PY");
-const fmtPrice = c => (c.moneda === "PYG" ? "Gs. " : "US$ ") + fmtNum(Number(c.precio) || 0);
+const fmtPrice = c => {
+  const n = fmtNum(Number(c.precio) || 0);
+  if (c.moneda === "EUR") return n + " €";
+  return (c.moneda === "PYG" ? "Gs. " : "US$ ") + n;
+};
 const fmtKm = k => (k === "" || k == null) ? "" : fmtNum(k) + " km";
 const ESTADOS = { disponible: "Disponible", reservado: "Reservado", vendido: "Vendido" };
 
