@@ -10,7 +10,8 @@ const BUCKET = CFG.BUCKET_FOTOS || "fotos";
 const MAX_FOTOS = 12;
 const DIAS_VENDIDO_VISIBLE = 14; // los vendidos se muestran al público estos días
 const USD_A_PYG = 7300;          // solo para ordenar por precio cuando hay monedas mezcladas
-
+const EUR_A_USD = 1.08;          // solo para ordenar por precio cuando hay monedas mezcladas
+  
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -59,7 +60,12 @@ async function refresh() {
 
 /* ---------- Filtros y orden ---------- */
 const rank = c => c.estado === "vendido" ? 2 : c.estado === "reservado" ? 1 : 0;
-const usd = c => c.moneda === "PYG" ? (Number(c.precio) || 0) / USD_A_PYG : Number(c.precio) || 0;
+const usd = c => {
+  const p = Number(c.precio) || 0;
+  if (c.moneda === "PYG") return p / USD_A_PYG;
+  if (c.moneda === "EUR") return p * EUR_A_USD;
+  return p;
+};
 const soldOld = c => c.vendido_en && (Date.now() - new Date(c.vendido_en).getTime()) > DIAS_VENDIDO_VISIBLE * 864e5;
 const adminMode = () => state.isAdmin && state.adminView;
 
