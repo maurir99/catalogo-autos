@@ -1,6 +1,6 @@
 # Easy Car — catálogo de autos
 
-Página publicada en **https://easycarmotor.com** (Vercel).
+Página publicada en **https://www.easycarmotor.com** (Vercel).
 
 Página web para mostrar vehículos en venta. Los clientes ven fotos, precios y especificaciones, y con el botón **Comprar por WhatsApp** te escriben directo con un mensaje armado. Vos entrás como vendedor para cargar, editar, reservar o marcar como vendidos los vehículos.
 
