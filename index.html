@@ -3,13 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Catálogo de Autos</title>
+<title>Easy Car</title>
 <meta name="description" content="Vehículos en venta. Mirá fotos, precios y especificaciones y consultá directo por WhatsApp.">
-<meta property="og:title" content="Catálogo de Autos">
+<meta property="og:title" content="Easy Car">
+<meta property="og:image" content="img/og.jpg">
 <meta property="og:description" content="Vehículos en venta. Consultá directo por WhatsApp.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#1E2633">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231E2633'/%3E%3Crect x='10' y='10' width='12' height='12' transform='rotate(45 16 16)' fill='%23F4C430'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#065EC2">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,500..900&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
@@ -19,7 +21,13 @@
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><i class="dot"></i><span id="bizName">Catálogo de Autos</span></div>
+    <a class="brand" href="./">
+      <picture>
+        <source srcset="img/logo-dark.png" media="(prefers-color-scheme: dark)">
+        <img src="img/logo.png" alt="Easy Car" width="481" height="170">
+      </picture>
+      <span class="sr-only" id="bizName">Easy Car</span>
+    </a>
     <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="search" placeholder="Buscar marca, modelo o año" aria-label="Buscar"></label>
     <button class="btn dark" id="adminToggle" hidden>Ver como cliente</button>
