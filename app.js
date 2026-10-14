@@ -1,4 +1,4 @@
-/* Catálogo de autos — lógica de la página
+/* Easy Car — lógica de la página
  * Datos en Supabase: tabla "autos", tabla "config" (fila id=1) y bucket de fotos.
  * Ver supabase/schema.sql y README.md.
  */
@@ -46,7 +46,8 @@ function toast(t) {
 async function loadCars() {
   const { data, error } = await sb.from("autos").select("*").order("creado", { ascending: false });
   if (error) throw error;
-  state.cars = data || [];
+  // Los vehículos cargados antes con "Nafta" se muestran como "Gasolina"
+  state.cars = (data || []).map(c => c.combustible === "Nafta" ? { ...c, combustible: "Gasolina" } : c);
 }
 async function loadConfig() {
   const { data } = await sb.from("config").select("*").eq("id", 1).maybeSingle();
@@ -55,7 +56,7 @@ async function loadConfig() {
 }
 async function refresh() {
   try { await loadCars(); render(); }
-  catch (e) { console.error(e); showGridMessage("No se pudo cargar el catálogo", "Revisá tu conexión y recargá la página."); }
+  catch (e) { console.error(e); showGridMessage("No se pudo cargar el catálogo", "Revisa tu conexión y recarga la página."); }
 }
 
 /* ---------- Filtros y orden ---------- */
@@ -106,11 +107,11 @@ function render() {
 
   if (!state.cars.length) {
     return admin
-      ? showGridMessage("Todavía no hay vehículos cargados", "Cargá el primero con sus fotos, precio y especificaciones. Antes, configurá el número de WhatsApp en “Datos del negocio”.", `<button class="btn primary" data-act="new">+ Cargar primer vehículo</button>`)
-      : showGridMessage("Pronto vas a ver los vehículos acá", "Estamos cargando el stock. Volvé en un rato.");
+      ? showGridMessage("Todavía no hay vehículos cargados", "Añade el primero con sus fotos, precio y especificaciones. Antes, configura el número de WhatsApp en “Datos del negocio”.", `<button class="btn primary" data-act="new">+ Cargar primer vehículo</button>`)
+      : showGridMessage("Muy pronto verás aquí los vehículos", "Estamos actualizando el stock. Vuelve dentro de un rato.");
   }
   const list = visible();
-  if (!list.length) return showGridMessage("Ningún vehículo coincide", "Probá con otra marca o quitá algún filtro.");
+  if (!list.length) return showGridMessage("Ningún vehículo coincide", "Prueba con otra marca o quita algún filtro.");
 
   $("#grid").innerHTML = list.map(c => {
     const tag = c.estado === "vendido" ? `<span class="tag vendido">Vendido</span>`
@@ -159,22 +160,22 @@ function openDetail(id) {
   const wa = (state.config.whatsapp || "").replace(/\D/g, "");
   const link = `${location.origin}${location.pathname}#auto-${c.id}`;
   const msg = `Hola${state.config.nombre ? " " + state.config.nombre : ""}! Me interesa comprar el ${title} publicado a ${fmtPrice(c)}. ¿Sigue disponible?\n${link}`;
-  const share = `<button type="button" class="btn ghost" id="btnShare">Copiar link de este vehículo</button>`;
+  const share = `<button type="button" class="btn ghost" id="btnShare">Copiar enlace de este vehículo</button>`;
   const con = $("#dContact");
   if (c.estado === "vendido") {
-    con.innerHTML = `<button class="btn wa" disabled>Vehículo vendido</button><small>Mirá los otros vehículos disponibles del catálogo.</small>`;
+    con.innerHTML = `<button class="btn wa" disabled>Vehículo vendido</button><small>Echa un vistazo a los demás vehículos disponibles.</small>`;
   } else if (!wa) {
     con.innerHTML = `<button class="btn wa" disabled>Comprar por WhatsApp</button><small>El vendedor todavía no configuró su número de WhatsApp.</small>${share}`;
   } else {
     con.innerHTML = `<a class="btn wa" href="https://wa.me/${wa}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
       ${c.estado === "reservado" ? "Consultar por WhatsApp" : "Comprar por WhatsApp"}</a>
-      <small>Te lleva a WhatsApp con un mensaje listo para el vendedor. También podés escribir al +${esc(wa)}.</small>${share}`;
+      <small>Te lleva a WhatsApp con un mensaje listo para el vendedor. También puedes escribir al +${esc(wa)}.</small>${share}`;
   }
   const sh = $("#btnShare");
   if (sh) sh.onclick = async () => {
-    try { await navigator.clipboard.writeText(link); toast("Link copiado"); }
-    catch { prompt("Copiá el link:", link); }
+    try { await navigator.clipboard.writeText(link); toast("Enlace copiado"); }
+    catch { prompt("Copia el enlace:", link); }
   };
 
   const fotos = (c.fotos || []).map(fotoUrl);
@@ -248,7 +249,7 @@ async function addFiles(files) {
     try {
       const blob = await toJpeg(await loadImg(tmp));
       pics.push({ blob, preview: URL.createObjectURL(blob) });
-    } catch { $("#fMsg").textContent = `No se pudo leer ${f.name}. Probá con una foto JPG o PNG.`; }
+    } catch { $("#fMsg").textContent = `No se pudo leer ${f.name}. Prueba con una foto JPG o PNG.`; }
     finally { URL.revokeObjectURL(tmp); }
   }
   drawPics();
@@ -265,7 +266,7 @@ drop.addEventListener("drop", e => { e.preventDefault(); drop.classList.remove("
 $("#carForm").addEventListener("submit", async e => {
   e.preventDefault();
   const v = k => $("#i_" + k).value.trim();
-  if (!v("marca") || !v("modelo") || !v("anio") || !v("precio")) { $("#fMsg").textContent = "Completá marca, modelo, año y precio."; return; }
+  if (!v("marca") || !v("modelo") || !v("anio") || !v("precio")) { $("#fMsg").textContent = "Completa marca, modelo, año y precio."; return; }
   const btn = $("#btnSave");
   btn.disabled = true; btn.textContent = "Guardando…"; $("#fMsg").textContent = "";
   const estado = v("estado");
@@ -315,8 +316,8 @@ $("#carForm").addEventListener("submit", async e => {
   } catch (err) {
     console.error(err);
     $("#fMsg").textContent = /row-level security|permission|not authorized|JWT/i.test(err?.message || "")
-      ? "Tu usuario no tiene permiso de administrador. Revisá el paso 4 del README."
-      : "No se pudo guardar. Revisá tu conexión e intentá de nuevo.";
+      ? "Tu usuario no tiene permiso de administrador. Revisa el paso 4 del README."
+      : "No se ha podido guardar. Revisa tu conexión e inténtalo de nuevo.";
   } finally {
     btn.disabled = false; btn.textContent = "Guardar vehículo";
   }
@@ -333,9 +334,9 @@ function openSettings() {
 $("#setForm").addEventListener("submit", async e => {
   e.preventDefault();
   const wa = $("#s_wa").value.replace(/\D/g, "");
-  if (wa.length < 10) { $("#sMsg").textContent = "Ingresá el número con código de país, por ejemplo 595981123456."; return; }
+  if (wa.length < 10) { $("#sMsg").textContent = "Escribe el número con el prefijo de país, por ejemplo 34686416404."; return; }
   const { error } = await sb.from("config").upsert({ id: 1, nombre: $("#s_nombre").value.trim(), whatsapp: wa, direccion: $("#s_dir").value.trim() });
-  if (error) { console.error(error); $("#sMsg").textContent = "No se pudo guardar. Intentá de nuevo."; return; }
+  if (error) { console.error(error); $("#sMsg").textContent = "No se ha podido guardar. Inténtalo de nuevo."; return; }
   $("#dSettings").close();
   toast("Datos guardados");
   loadConfig();
@@ -364,7 +365,7 @@ $("#loginForm").addEventListener("submit", async e => {
   if (error) { $("#lMsg").textContent = "Email o contraseña incorrectos."; return; }
   const { session } = await checkAdmin();
   $("#dLogin").close();
-  if (session && !state.isAdmin) toast("Ingresaste, pero tu usuario no es administrador");
+  if (session && !state.isAdmin) toast("Has entrado, pero tu usuario no es administrador");
   else toast("Bienvenido");
   render();
 });
@@ -393,7 +394,7 @@ $("#grid").addEventListener("click", async e => {
     if (act === "edit") return openForm(id);
     if (act === "del") {
       if (pendingDel !== id) {
-        pendingDel = id; actEl.textContent = "¿Seguro? Tocá de nuevo";
+        pendingDel = id; actEl.textContent = "¿Seguro? Toca otra vez";
         setTimeout(() => { if (pendingDel === id) { pendingDel = null; render(); } }, 4000);
         return;
       }
@@ -443,7 +444,7 @@ document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e =
 (async () => {
   if (!sb) {
     showGridMessage("Falta conectar la base de datos",
-      "Completá config.js con la URL y la anon key de tu proyecto de Supabase. Los pasos están en el README.");
+      "Completa config.js con la URL y la anon key de tu proyecto de Supabase. Los pasos están en el README.");
     $("#btnLogin").hidden = true;
     return;
   }

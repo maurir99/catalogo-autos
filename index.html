@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Easy Car</title>
-<meta name="description" content="Vehículos en venta. Mirá fotos, precios y especificaciones y consultá directo por WhatsApp.">
+<meta name="description" content="Coches en venta en Albacete. Mira fotos, precios y especificaciones y consulta directamente por WhatsApp.">
 <meta property="og:title" content="Easy Car">
 <link rel="canonical" href="https://www.easycarmotor.com/">
 <meta property="og:url" content="https://www.easycarmotor.com/">
@@ -13,7 +13,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:description" content="Vehículos en venta. Consultá directo por WhatsApp.">
+<meta property="og:description" content="Coches en venta en Albacete. Consulta directamente por WhatsApp.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#065EC2">
 <link rel="icon" type="image/png" href="img/favicon.png">
@@ -45,20 +45,20 @@
   <section class="lead">
     <div>
       <h1 id="headline">Vehículos disponibles</h1>
-      <p id="sub">Elegí el tuyo y consultá directo con el vendedor por WhatsApp.</p>
+      <p id="sub">Elige el tuyo y consulta directamente con el vendedor por WhatsApp.</p>
     </div>
     <div class="count" id="count"></div>
   </section>
 
   <div class="filters">
     <select id="fMarca" aria-label="Marca"><option value="">Todas las marcas</option></select>
-    <button class="chip" data-f="combustible" data-v="Nafta" aria-pressed="false">Nafta</button>
+    <button class="chip" data-f="combustible" data-v="Gasolina" aria-pressed="false">Gasolina</button>
     <button class="chip" data-f="combustible" data-v="Diésel" aria-pressed="false">Diésel</button>
     <button class="chip" data-f="combustible" data-v="Híbrido" aria-pressed="false">Híbrido</button>
     <button class="chip" data-f="transmision" data-v="Automática" aria-pressed="false">Automática</button>
     <button class="chip" data-f="transmision" data-v="Manual" aria-pressed="false">Manual</button>
     <select id="sort" aria-label="Ordenar" class="sort">
-      <option value="new">Recién ingresados</option>
+      <option value="new">Recién llegados</option>
       <option value="pa">Menor precio</option>
       <option value="pd">Mayor precio</option>
       <option value="ya">Año más nuevo</option>
@@ -68,7 +68,7 @@
 
   <div class="adminbar" id="adminBar" hidden>
     <strong>Administrador</strong>
-    <span class="hint grow">Cargá los vehículos que van entrando. Los clientes los ven al instante.</span>
+    <span class="hint grow">Añade los vehículos según van entrando. Los clientes los ven al instante.</span>
     <button class="btn" id="btnSettings">Datos del negocio</button>
     <button class="btn primary" id="btnNew">+ Cargar vehículo</button>
   </div>
@@ -87,7 +87,7 @@
         <a href="tel:+34686416404">686 416 404</a></p>
     </div>
     <div class="legal">
-      <span>Precios sujetos a confirmación. Consultá disponibilidad por WhatsApp.</span>
+      <span>Precios sujetos a confirmación. Consulta la disponibilidad por WhatsApp.</span>
       <button class="linkbtn" id="btnLogin">Acceso vendedor</button>
     </div>
   </div>
@@ -115,7 +115,7 @@
       <div class="f"><label for="l_email">Email</label><input id="l_email" type="email" autocomplete="username" required></div>
       <div class="f"><label for="l_pass">Contraseña</label><input id="l_pass" type="password" autocomplete="current-password" required></div>
     </div>
-    <div class="factions"><span class="msg" id="lMsg"></span><button type="submit" class="btn primary" id="btnDoLogin">Ingresar</button></div>
+    <div class="factions"><span class="msg" id="lMsg"></span><button type="submit" class="btn primary" id="btnDoLogin">Entrar</button></div>
   </form>
 </dialog>
 
@@ -124,26 +124,26 @@
   <form id="carForm" novalidate>
     <div class="dhead"><h2 id="fTitle">Cargar vehículo</h2><button type="button" class="x" data-close aria-label="Cerrar">×</button></div>
     <div class="dbody form">
-      <div class="f s2"><label for="i_marca">Marca *</label><input id="i_marca" list="marcasList" required placeholder="Toyota"><datalist id="marcasList"></datalist></div>
-      <div class="f s2"><label for="i_modelo">Modelo / versión *</label><input id="i_modelo" required placeholder="Hilux SRV 2.8"></div>
+      <div class="f s2"><label for="i_marca">Marca *</label><input id="i_marca" list="marcasList" required placeholder="Seat"><datalist id="marcasList"></datalist></div>
+      <div class="f s2"><label for="i_modelo">Modelo / versión *</label><input id="i_modelo" required placeholder="León FR 1.5 TSI"></div>
       <div class="f"><label for="i_anio">Año *</label><input id="i_anio" type="number" inputmode="numeric" min="1950" max="2035" required placeholder="2021"></div>
       <div class="f"><label for="i_km">Kilometraje</label><input id="i_km" type="number" inputmode="numeric" min="0" placeholder="45000"></div>
-      <div class="f"><label for="i_precio">Precio *</label><input id="i_precio" type="number" inputmode="numeric" min="0" required placeholder="38500"></div>
+      <div class="f"><label for="i_precio">Precio *</label><input id="i_precio" type="number" inputmode="numeric" min="0" required placeholder="18500"></div>
       <div class="f"><label for="i_moneda">Moneda</label><select id="i_moneda"><option value="EUR">€</option><option value="USD">US$</option><option value="PYG">Gs.</option></select></div>
-      <div class="f"><label for="i_combustible">Combustible</label><select id="i_combustible"><option>Nafta</option><option>Diésel</option><option>Híbrido</option><option>Eléctrico</option><option>Flex</option><option>GNC</option></select></div>
+      <div class="f"><label for="i_combustible">Combustible</label><select id="i_combustible"><option>Gasolina</option><option>Diésel</option><option>Híbrido</option><option>Eléctrico</option><option>Flex</option><option>GNC</option></select></div>
       <div class="f"><label for="i_transmision">Transmisión</label><select id="i_transmision"><option>Manual</option><option>Automática</option></select></div>
-      <div class="f"><label for="i_motor">Motor</label><input id="i_motor" placeholder="2.8 TDI"></div>
+      <div class="f"><label for="i_motor">Motor</label><input id="i_motor" placeholder="1.5 TSI"></div>
       <div class="f"><label for="i_traccion">Tracción</label><select id="i_traccion"><option>4x2</option><option>4x4</option><option>AWD</option></select></div>
       <div class="f"><label for="i_color">Color</label><input id="i_color" placeholder="Blanco"></div>
       <div class="f"><label for="i_puertas">Puertas</label><input id="i_puertas" type="number" min="2" max="6" placeholder="4"></div>
-      <div class="f"><label for="i_carroceria">Carrocería</label><select id="i_carroceria"><option>Sedán</option><option>Hatchback</option><option>SUV</option><option>Camioneta</option><option>Pick-up</option><option>Furgón</option><option>Coupé</option><option>Moto</option></select></div>
+      <div class="f"><label for="i_carroceria">Carrocería</label><select id="i_carroceria"><option>Sedán</option><option>Hatchback</option><option>SUV</option><option>Monovolumen</option><option>Pick-up</option><option>Todoterreno</option><option>Familiar</option><option>Descapotable</option><option>Furgoneta</option><option>Coupé</option><option>Moto</option></select></div>
       <div class="f"><label for="i_estado">Estado</label><select id="i_estado"><option value="disponible">Disponible</option><option value="reservado">Reservado</option><option value="vendido">Vendido</option></select></div>
-      <div class="f s2"><label for="i_extras">Equipamiento (separado por comas)</label><input id="i_extras" placeholder="Aire, cámara de retroceso, cuero"></div>
+      <div class="f s2"><label for="i_extras">Equipamiento (separado por comas)</label><input id="i_extras" placeholder="Climatizador, cámara trasera, navegador"></div>
       <div class="f s2 check"><input id="i_cero" type="checkbox"><label for="i_cero">0 km</label></div>
-      <div class="f s4"><label for="i_desc">Descripción</label><textarea id="i_desc" placeholder="Único dueño, servicios al día en concesionaria, cubiertas nuevas."></textarea></div>
+      <div class="f s4"><label for="i_desc">Descripción</label><textarea id="i_desc" placeholder="Un solo propietario, libro de mantenimiento al día en concesionario, neumáticos nuevos."></textarea></div>
       <div class="f s4">
         <label>Fotos (hasta 12, la primera es la portada)</label>
-        <div class="drop" id="drop" tabindex="0" role="button">Tocá para elegir fotos o arrastralas acá<input type="file" id="i_files" accept="image/*" multiple hidden></div>
+        <div class="drop" id="drop" tabindex="0" role="button">Toca para elegir fotos o arrástralas aquí<input type="file" id="i_files" accept="image/*" multiple hidden></div>
         <div class="pics" id="pics"></div>
       </div>
     </div>
@@ -156,9 +156,9 @@
   <form id="setForm" novalidate>
     <div class="dhead"><h2>Datos del negocio</h2><button type="button" class="x" data-close aria-label="Cerrar">×</button></div>
     <div class="dbody form one">
-      <div class="f"><label for="s_nombre">Nombre del negocio</label><input id="s_nombre" placeholder="Automotores Rolón"></div>
-      <div class="f"><label for="s_wa">WhatsApp del vendedor *</label><input id="s_wa" inputmode="tel" placeholder="595981123456"><p class="hint">Con código de país, sin + ni espacios. Paraguay: 595 + número sin el 0 (0981 123 456 → 595981123456).</p></div>
-      <div class="f"><label for="s_dir">Dirección o zona (opcional)</label><input id="s_dir" placeholder="Av. Mcal. López 1234, Asunción"></div>
+      <div class="f"><label for="s_nombre">Nombre del negocio</label><input id="s_nombre" placeholder="Easy Car"></div>
+      <div class="f"><label for="s_wa">WhatsApp del vendedor *</label><input id="s_wa" inputmode="tel" placeholder="34686416404"><p class="hint">Con el prefijo de país, sin + ni espacios. España: 34 + el número (686 416 404 → 34686416404).</p></div>
+      <div class="f"><label for="s_dir">Dirección o zona (opcional)</label><input id="s_dir" placeholder="Carretera de Jaén km 3, Nº 204, Albacete, España"></div>
     </div>
     <div class="factions"><span class="msg" id="sMsg"></span><button type="button" class="btn ghost" data-close>Cancelar</button><button type="submit" class="btn primary">Guardar</button></div>
   </form>
