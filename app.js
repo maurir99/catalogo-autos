@@ -133,7 +133,7 @@ function renderConfig() {
   const n = state.config.nombre || "Easy Car";
   $("#bizName").textContent = n;
   document.title = n;
-  $("#foot").textContent = [state.config.direccion, "Precios sujetos a confirmación. Consultá disponibilidad por WhatsApp."].filter(Boolean).join(" · ");
+  if (state.config.direccion) $("#footDir").textContent = state.config.direccion;
 }
 
 /* ---------- Detalle ---------- */
