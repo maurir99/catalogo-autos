@@ -133,7 +133,11 @@ function renderConfig() {
   const n = state.config.nombre || "Easy Car";
   $("#bizName").textContent = n;
   document.title = n;
-  if (state.config.direccion) $("#footDir").textContent = state.config.direccion;
+  if (state.config.direccion) {
+    const d = $("#footDir");
+    d.textContent = state.config.direccion;
+    d.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(state.config.direccion);
+  }
 }
 
 /* ---------- Detalle ---------- */
