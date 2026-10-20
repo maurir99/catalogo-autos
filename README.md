@@ -12,6 +12,22 @@ Página web para mostrar vehículos en venta. Los clientes ven fotos, precios y 
 
 | Archivo | Para qué sirve |
 |---|---|
+| `index.html` | **Inicio**: portada, últimos vehículos y accesos a Financiación y tasación |
+| `vehiculos.html` | **Vehículos**: catálogo completo y panel de administrador |
+| `financiacion.html` | **Financiación**: cómo funciona y documentación |
+| `nosotros.html` | **Nosotros**: quiénes somos y por qué elegirnos |
+| `contacto.html` | **Contacto**: WhatsApp, teléfono, dirección y mapa |
+| `styles.css` | Diseño de todo el sitio (colores, tipografías, tamaños) |
+| `common.js` | Menú del celular, botones de WhatsApp y últimos vehículos en Inicio |
+| `app.js` | Lógica del catálogo: filtros, ficha, WhatsApp, panel de administrador |
+| `config.js` | Datos de conexión con tu Supabase |
+| `vercel.json` | Direcciones limpias (`/vehiculos` en lugar de `/vehiculos.html`) |
+| `img/` | Logos, foto de portada, íconos e imagen para compartir |
+| `supabase/schema.sql` | Tablas, permisos y almacenamiento de fotos |
+
+> El menú y el pie de página se repiten en las cinco páginas. Si cambias un enlace o un texto del menú, cámbialo en todas.
+
+---|---|
 | `index.html` | Estructura de la página |
 | `styles.css` | Diseño (colores, tipografías, tamaños) |
 | `app.js` | Lógica: catálogo, filtros, WhatsApp, panel de administrador |

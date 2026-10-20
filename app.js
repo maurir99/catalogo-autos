@@ -22,11 +22,11 @@ const state = {
 
 /* ---------- Conexión ---------- */
 const configured = CFG.SUPABASE_URL && !CFG.SUPABASE_URL.includes("TU-PROYECTO") && CFG.SUPABASE_ANON_KEY && !CFG.SUPABASE_ANON_KEY.includes("PEGÁ");
-const sb = configured && window.supabase ? window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY) : null;
+const sb = window.EC?.sb || (configured && window.supabase ? window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY) : null);
 const fotoUrl = path => /^https?:|^data:|^blob:/.test(path) ? path : sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
 
 /* ---------- Formatos ---------- */
-const fmtNum = n => Number(n).toLocaleString("es-PY");
+const fmtNum = n => Number(n).toLocaleString("es-ES", { useGrouping: "always" });
 const fmtPrice = c => {
   const n = fmtNum(Number(c.precio) || 0);
   if (c.moneda === "EUR") return n + " €";
@@ -131,14 +131,7 @@ function render() {
 }
 
 function renderConfig() {
-  const n = state.config.nombre || "Easy Car";
-  $("#bizName").textContent = n;
-  document.title = n;
-  if (state.config.direccion) {
-    const d = $("#footDir");
-    d.textContent = state.config.direccion;
-    d.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(state.config.direccion);
-  }
+  // El menú, el pie y los botones de WhatsApp los completa common.js
 }
 
 /* ---------- Detalle ---------- */
@@ -450,6 +443,10 @@ document.querySelectorAll("dialog").forEach(d => d.addEventListener("click", e =
   }
   await Promise.all([checkAdmin(), loadConfig(), refresh()]);
   if (location.hash.startsWith("#auto-")) openDetail(location.hash.slice(6));
+  if (location.hash === "#acceso" && !state.isAdmin) {
+    history.replaceState(null, "", location.pathname);
+    $("#lMsg").textContent = ""; $("#dLogin").showModal();
+  }
   sb.auth.onAuthStateChange((ev) => { if (ev === "SIGNED_OUT" || ev === "TOKEN_REFRESHED") checkAdmin().then(render); });
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") refresh(); });
 })();

@@ -3,166 +3,119 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Easy Car</title>
-<meta name="description" content="Coches en venta en Albacete. Mira fotos, precios y especificaciones y consulta directamente por WhatsApp.">
-<meta property="og:title" content="Easy Car">
+<title>Easy Car · Compra y venta de coches en Albacete</title>
+<meta name="description" content="Compra y venta de coches de ocasión en Albacete. Mira nuestro stock con fotos, precios y especificaciones y consulta por WhatsApp.">
 <link rel="canonical" href="https://www.easycarmotor.com/">
-<meta property="og:url" content="https://www.easycarmotor.com/">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="Easy Car">
+<meta property="og:title" content="Easy Car · Compra y venta de coches en Albacete">
+<meta property="og:description" content="Compra y venta de coches de ocasión en Albacete. Mira nuestro stock con fotos, precios y especificaciones y consulta por WhatsApp.">
+<meta property="og:url" content="https://www.easycarmotor.com/">
 <meta property="og:image" content="https://www.easycarmotor.com/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:description" content="Coches en venta en Albacete. Consulta directamente por WhatsApp.">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#0A1626">
-<link rel="icon" type="image/png" href="img/favicon.png">
-<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#05080F">
+<link rel="icon" type="image/png" href="/img/favicon.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,500..900&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Kaushan+Script&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<script>/* Enlaces antiguos a un coche (/#auto-...) ahora viven en /vehiculos */
+if (location.hash.indexOf("#auto-") === 0) location.replace("/vehiculos" + location.hash);</script>
 </head>
-<body>
-
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="./">
-      <img src="img/logo.png" alt="Easy Car" width="300" height="216">
-      <span class="sr-only" id="bizName">Easy Car</span>
-    </a>
-    <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Buscar marca, modelo o año" aria-label="Buscar"></label>
-    <button class="btn dark" id="adminToggle" hidden>Ver como cliente</button>
-    <button class="btn dark" id="btnLogout" hidden>Salir</button>
+<body data-page="inicio">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="site-header">
+  <div class="wrap nav-row">
+    <a class="nav-logo" href="/" aria-label="Easy Car, ir al inicio"><img src="/img/logo-menu.png" alt="Easy Car" width="360" height="122"></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    <nav class="nav" id="menu" aria-label="Principal">
+      <ul>
+        <li><a href="/" aria-current="page">Inicio</a></li>
+        <li><a href="/vehiculos">Vehículos</a></li>
+        <li><a href="/financiacion">Financiación</a></li>
+        <li><a href="/nosotros">Nosotros</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+      <a class="btn-wa-outline" data-wa="Hola Easy Car, quiero hacer una consulta." href="https://wa.me/34686416404" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>Contáctanos</span></a>
+    </nav>
   </div>
 </header>
 
-<main class="wrap">
-  <section class="lead">
-    <div>
-      <h1 id="headline">Vehículos disponibles</h1>
-      <p id="sub">Elige el tuyo y consulta directamente con el vendedor por WhatsApp.</p>
+<main id="contenido">
+<section class="hero">
+  <div class="hero-photo" role="img" aria-label="Concesionario Easy Car al atardecer con un coche negro en primer plano"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <h1 class="hero-logo"><img src="/img/logo-portada.png" alt="Easy Car, compra y venta" width="699" height="258"></h1>
+      <p class="hero-kicker">Tu próximo coche</p>
+      <p class="hero-script">te está esperando</p>
+      <a class="btn-hero" href="/vehiculos"><span>Ver inventario</span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
-    <div class="count" id="count"></div>
-  </section>
-
-  <div class="filters">
-    <select id="fMarca" aria-label="Marca"><option value="">Todas las marcas</option></select>
-    <button class="chip" data-f="combustible" data-v="Gasolina" aria-pressed="false">Gasolina</button>
-    <button class="chip" data-f="combustible" data-v="Diésel" aria-pressed="false">Diésel</button>
-    <button class="chip" data-f="combustible" data-v="Híbrido" aria-pressed="false">Híbrido</button>
-    <button class="chip" data-f="transmision" data-v="Automática" aria-pressed="false">Automática</button>
-    <button class="chip" data-f="transmision" data-v="Manual" aria-pressed="false">Manual</button>
-    <select id="sort" aria-label="Ordenar" class="sort">
-      <option value="new">Recién llegados</option>
-      <option value="pa">Menor precio</option>
-      <option value="pd">Mayor precio</option>
-      <option value="ya">Año más nuevo</option>
-      <option value="km">Menos kilómetros</option>
-    </select>
   </div>
-
-  <div class="adminbar" id="adminBar" hidden>
-    <strong>Administrador</strong>
-    <span class="hint grow">Añade los vehículos según van entrando. Los clientes los ven al instante.</span>
-    <button class="btn" id="btnSettings">Datos del negocio</button>
-    <button class="btn primary" id="btnNew">+ Cargar vehículo</button>
+  <div class="wrap">
+    <ul class="features">
+      <li><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.4 3.1 7.6 7.5 9 4.4-1.4 7.5-4.6 7.5-9V6Z"/><path d="m8.8 12.2 2.3 2.3 4.4-4.6"/></svg><span>Vehículos<br>verificados</span></li>
+      <li><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 5.5 6l3 1.6L11 6.4a2 2 0 0 1 1.8 0L18.5 9 22 7"/><path d="M2 9.5 6.5 15"/><path d="M22 7l-2.8 7.2"/><path d="m11 8.6-2.4 1.9a1.3 1.3 0 0 0 1.6 2l2.2-1.6 5.6 4.3a1.2 1.2 0 0 1-1.5 1.9L14 15"/><path d="m16.8 17.6-2.6-2"/><path d="M6.5 15l1.3 1.1a1.2 1.2 0 0 0 1.7-1.7"/><path d="m8.6 17.6.6.5a1.2 1.2 0 0 0 1.7-1.7l-1-.9"/><path d="m11 19 .5.4a1.2 1.2 0 0 0 1.6-1.8L12 16.6"/></svg><span>Trato<br>seguro</span></li>
+      <li><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 9.5h19M6 15h4M14.5 15h3"/></svg><span>Facilidades<br>de pago</span></li>
+      <li><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15.5v-3l1.8-4.3A2 2 0 0 1 6.6 7h10.8a2 2 0 0 1 1.8 1.2L21 12.5v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M3 12.5h18M5.5 16.5V19M18.5 16.5V19"/><circle cx="7" cy="14.3" r=".6" fill="currentColor"/><circle cx="17" cy="14.3" r=".6" fill="currentColor"/></svg><span>Gran variedad<br>de modelos</span></li>
+    </ul>
   </div>
+</section>
 
-  <section class="grid" id="grid" aria-live="polite">
-    <div class="empty"><h2>Cargando catálogo…</h2></div>
-  </section>
+<section class="section" id="ultimos" hidden>
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="kicker">Stock</p><h2>Recién llegados</h2></div>
+      <a class="link-arrow" href="/vehiculos">Ver todos los vehículos <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="grid" id="ultimosGrid"></div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap duo">
+    <a class="promo" href="/financiacion">
+      <span class="promo-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 9.5h19M6 15h4M14.5 15h3"/></svg></span>
+      <h2>Financiación a tu medida</h2>
+      <p>Paga tu coche en cómodas cuotas. Te ayudamos con la solicitud y te damos respuesta rápida.</p>
+      <span class="link-arrow">Cómo funciona <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+    <a class="promo" data-wa="Hola Easy Car, quiero vender mi coche." href="https://wa.me/34686416404" target="_blank" rel="noopener">
+      <span class="promo-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4.5"/><path d="m11.2 11.8 8.3-8.3M16.5 6.5l2.5 2.5M14 9l2 2"/></svg></span>
+      <h2>¿Vendes tu coche?</h2>
+      <p>También compramos. Envíanos por WhatsApp la marca, el modelo, el año, los kilómetros y unas fotos, y te hacemos una oferta.</p>
+      <span class="link-arrow">Pedir tasación <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a>
+  </div>
+</section>
 </main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="contacto">
-      <p class="dato"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-        <a id="footDir" href="https://www.google.com/maps/search/?api=1&amp;query=Carretera+de+Ja%C3%A9n+km+3+204%2C+Albacete%2C+Espa%C3%B1a" target="_blank" rel="noopener">Carretera de Jaén km 3, Nº 204, Albacete, España</a></p>
-      <p class="dato"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
-        <a href="tel:+34686416404">686 416 404</a></p>
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img src="/img/logo-menu.png" alt="Easy Car" width="180" height="61">
+      <p>Compra y venta de coches de ocasión en Albacete.</p>
     </div>
-    <div class="legal">
-      <span>Precios sujetos a confirmación. Consulta la disponibilidad por WhatsApp.</span>
-      <button class="linkbtn" id="btnLogin">Acceso vendedor</button>
+    <div class="foot-col">
+      <h2>Visítanos</h2>
+      <p class="dato"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><a data-address href="https://www.google.com/maps/search/?api=1&amp;query=Carretera+de+Ja%C3%A9n+km+3+204%2C+Albacete%2C+Espa%C3%B1a" target="_blank" rel="noopener">Carretera de Jaén km 3, Nº 204, Albacete, España</a></p>
+      <p class="dato"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><a href="tel:+34686416404">686 416 404</a></p>
+      <p class="dato"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><a data-wa="Hola Easy Car, quiero hacer una consulta." href="https://wa.me/34686416404" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></p>
     </div>
+    <div class="foot-col">
+      <h2>Secciones</h2>
+      <ul class="foot-links"><li><a href="/">Inicio</a></li> <li><a href="/vehiculos">Vehículos</a></li> <li><a href="/financiacion">Financiación</a></li> <li><a href="/nosotros">Nosotros</a></li> <li><a href="/contacto">Contacto</a></li></ul>
+    </div>
+  </div>
+  <div class="wrap foot-legal">
+    <span>© <span data-year>2026</span> Easy Car · Precios sujetos a confirmación.</span>
+      <div class="foot-admin"><a class="linkbtn" href="/vehiculos#acceso">Acceso vendedor</a></div>
   </div>
 </footer>
-
-<!-- Detalle del vehículo -->
-<dialog id="dDetail">
-  <div class="dhead"><h2 id="dTitle"></h2><button class="x" data-close aria-label="Cerrar">×</button></div>
-  <div class="dbody detail">
-    <div class="gallery"><div class="main" id="gMain"></div><div class="thumbs" id="gThumbs"></div></div>
-    <div>
-      <div class="bigprice" id="dPrice"></div>
-      <table class="sheet" id="dSheet"></table>
-      <p class="desc" id="dDesc"></p>
-      <div class="contact" id="dContact"></div>
-    </div>
-  </div>
-</dialog>
-
-<!-- Ingreso del vendedor -->
-<dialog id="dLogin" class="narrow">
-  <form id="loginForm" novalidate>
-    <div class="dhead"><h2>Acceso vendedor</h2><button type="button" class="x" data-close aria-label="Cerrar">×</button></div>
-    <div class="dbody form one">
-      <div class="f"><label for="l_email">Email</label><input id="l_email" type="email" autocomplete="username" required></div>
-      <div class="f"><label for="l_pass">Contraseña</label><input id="l_pass" type="password" autocomplete="current-password" required></div>
-    </div>
-    <div class="factions"><span class="msg" id="lMsg"></span><button type="submit" class="btn primary" id="btnDoLogin">Entrar</button></div>
-  </form>
-</dialog>
-
-<!-- Carga / edición de vehículo -->
-<dialog id="dForm">
-  <form id="carForm" novalidate>
-    <div class="dhead"><h2 id="fTitle">Cargar vehículo</h2><button type="button" class="x" data-close aria-label="Cerrar">×</button></div>
-    <div class="dbody form">
-      <div class="f s2"><label for="i_marca">Marca *</label><input id="i_marca" list="marcasList" required placeholder="Seat"><datalist id="marcasList"></datalist></div>
-      <div class="f s2"><label for="i_modelo">Modelo / versión *</label><input id="i_modelo" required placeholder="León FR 1.5 TSI"></div>
-      <div class="f"><label for="i_anio">Año *</label><input id="i_anio" type="number" inputmode="numeric" min="1950" max="2035" required placeholder="2021"></div>
-      <div class="f"><label for="i_km">Kilometraje</label><input id="i_km" type="number" inputmode="numeric" min="0" placeholder="45000"></div>
-      <div class="f"><label for="i_precio">Precio *</label><input id="i_precio" type="number" inputmode="numeric" min="0" required placeholder="18500"></div>
-      <div class="f"><label for="i_moneda">Moneda</label><select id="i_moneda"><option value="EUR">€</option><option value="USD">US$</option><option value="PYG">Gs.</option></select></div>
-      <div class="f"><label for="i_combustible">Combustible</label><select id="i_combustible"><option>Gasolina</option><option>Diésel</option><option>Híbrido</option><option>Eléctrico</option><option>Flex</option><option>GNC</option></select></div>
-      <div class="f"><label for="i_transmision">Transmisión</label><select id="i_transmision"><option>Manual</option><option>Automática</option></select></div>
-      <div class="f"><label for="i_motor">Motor</label><input id="i_motor" placeholder="1.5 TSI"></div>
-      <div class="f"><label for="i_traccion">Tracción</label><select id="i_traccion"><option>4x2</option><option>4x4</option><option>AWD</option></select></div>
-      <div class="f"><label for="i_color">Color</label><input id="i_color" placeholder="Blanco"></div>
-      <div class="f"><label for="i_puertas">Puertas</label><input id="i_puertas" type="number" min="2" max="6" placeholder="4"></div>
-      <div class="f"><label for="i_carroceria">Carrocería</label><select id="i_carroceria"><option>Sedán</option><option>Hatchback</option><option>SUV</option><option>Monovolumen</option><option>Pick-up</option><option>Todoterreno</option><option>Familiar</option><option>Descapotable</option><option>Furgoneta</option><option>Coupé</option><option>Moto</option></select></div>
-      <div class="f"><label for="i_estado">Estado</label><select id="i_estado"><option value="disponible">Disponible</option><option value="reservado">Reservado</option><option value="vendido">Vendido</option></select></div>
-      <div class="f s2"><label for="i_extras">Equipamiento (separado por comas)</label><input id="i_extras" placeholder="Climatizador, cámara trasera, navegador"></div>
-      <div class="f s2 check"><input id="i_cero" type="checkbox"><label for="i_cero">0 km</label></div>
-      <div class="f s4"><label for="i_desc">Descripción</label><textarea id="i_desc" placeholder="Un solo propietario, libro de mantenimiento al día en concesionario, neumáticos nuevos."></textarea></div>
-      <div class="f s4">
-        <label>Fotos (hasta 12, la primera es la portada)</label>
-        <div class="drop" id="drop" tabindex="0" role="button">Toca para elegir fotos o arrástralas aquí<input type="file" id="i_files" accept="image/*" multiple hidden></div>
-        <div class="pics" id="pics"></div>
-      </div>
-    </div>
-    <div class="factions"><span class="msg" id="fMsg"></span><button type="button" class="btn ghost" data-close>Cancelar</button><button type="submit" class="btn primary" id="btnSave">Guardar vehículo</button></div>
-  </form>
-</dialog>
-
-<!-- Datos del negocio -->
-<dialog id="dSettings" class="narrow">
-  <form id="setForm" novalidate>
-    <div class="dhead"><h2>Datos del negocio</h2><button type="button" class="x" data-close aria-label="Cerrar">×</button></div>
-    <div class="dbody form one">
-      <div class="f"><label for="s_nombre">Nombre del negocio</label><input id="s_nombre" placeholder="Easy Car"></div>
-      <div class="f"><label for="s_wa">WhatsApp del vendedor *</label><input id="s_wa" inputmode="tel" placeholder="34686416404"><p class="hint">Con el prefijo de país, sin + ni espacios. España: 34 + el número (686 416 404 → 34686416404).</p></div>
-      <div class="f"><label for="s_dir">Dirección o zona (opcional)</label><input id="s_dir" placeholder="Carretera de Jaén km 3, Nº 204, Albacete, España"></div>
-    </div>
-    <div class="factions"><span class="msg" id="sMsg"></span><button type="button" class="btn ghost" data-close>Cancelar</button><button type="submit" class="btn primary">Guardar</button></div>
-  </form>
-</dialog>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3/dist/umd/supabase.js"></script>
-<script src="config.js"></script>
-<script src="app.js"></script>
+<script src="/config.js"></script>
+<script src="/common.js"></script>
 </body>
 </html>
