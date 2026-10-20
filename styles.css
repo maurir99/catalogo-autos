@@ -323,3 +323,5 @@ a:hover .link-arrow svg,.link-arrow:hover svg{transform:translateX(4px)}
   .hero-kicker{letter-spacing:.14em;margin-top:18px}
   .hero-script{margin-top:6px;margin-bottom:24px;transform:rotate(-4deg)}
 }
+.hero-logo img{filter:drop-shadow(0 8px 26px rgba(45,139,255,.35))}
+.foot-brand img{height:46px}
