@@ -150,10 +150,10 @@ html{scroll-behavior:smooth}
 .kicker{margin:0 0 6px;font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--brand)}
 
 /* Menú */
-.site-header{position:sticky;top:0;z-index:30;background:rgba(4,7,13,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);padding-top:env(safe-area-inset-top,0px)}
+.site-header{position:sticky;top:0;z-index:30;background:var(--night);border-bottom:1px solid rgba(255,255,255,.06);padding-top:env(safe-area-inset-top,0px)}
 .nav-row{display:flex;align-items:center;gap:24px;min-height:76px}
 .nav-logo{display:block;flex:none}
-.nav-logo img{display:block;height:46px;width:auto}
+.nav-logo img{display:block;height:54px;width:auto}
 .nav{display:flex;align-items:center;gap:28px;flex:1}
 .nav ul{display:flex;gap:6px;list-style:none;margin:0 auto;padding:0}
 .nav ul a{display:block;padding:10px 14px;color:var(--night-ink);text-decoration:none;font-weight:500;font-size:.98rem;position:relative}
@@ -194,7 +194,7 @@ html{scroll-behavior:smooth}
 .hero-inner{display:flex;align-items:center;min-height:clamp(480px,70vh,680px);padding-block:40px 24px}
 .hero-copy{max-width:600px}
 .hero-logo{margin:0 0 6px;line-height:0}
-.hero-logo img{width:min(560px,100%);height:auto}
+.hero-logo img{width:min(600px,100%);height:auto;margin-left:-22px}
 .hero-kicker{display:flex;align-items:center;gap:14px;margin:26px 0 0;font-weight:400;font-size:clamp(1.05rem,2.2vw,1.55rem);letter-spacing:.24em;text-transform:uppercase;color:#E6ECF5}
 .hero-kicker::before{content:"";width:22px;height:2px;background:#E6ECF5;opacity:.7}
 .hero-script{margin:0 0 30px;font-family:var(--script);font-size:clamp(2.6rem,6.4vw,4.7rem);line-height:1.05;transform:rotate(-5deg);transform-origin:left center;padding-left:clamp(0px,2vw,20px);background:linear-gradient(90deg,#0B5BFF,#2D8BFF 70%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 18px rgba(22,98,232,.45))}
@@ -323,5 +323,6 @@ a:hover .link-arrow svg,.link-arrow:hover svg{transform:translateX(4px)}
   .hero-kicker{letter-spacing:.14em;margin-top:18px}
   .hero-script{margin-top:6px;margin-bottom:24px;transform:rotate(-4deg)}
 }
-.hero-logo img{filter:drop-shadow(0 8px 26px rgba(45,139,255,.35))}
 .foot-brand img{height:46px}
+/* El logo viene sobre fondo negro: con "lighten" el negro desaparece y queda sólo el logo */
+.nav-logo img,.hero-logo img,.foot-brand img{mix-blend-mode:lighten}
