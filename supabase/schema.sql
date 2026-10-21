@@ -11,6 +11,9 @@ create table if not exists public.admins (
   creado  timestamptz not null default now()
 );
 alter table public.admins enable row level security;
+-- Permisos de la API (necesarios en proyectos nuevos desde oct. 2026).
+-- La página nunca lee esta tabla directamente: sólo el servidor.
+grant select, insert, update, delete on public.admins to service_role;
 -- Nadie puede leer ni modificar esta tabla desde la página; se administra desde el panel de Supabase.
 
 create or replace function public.is_admin()
@@ -52,6 +55,10 @@ create table if not exists public.autos (
 create index if not exists autos_creado_idx on public.autos (creado desc);
 
 alter table public.autos enable row level security;
+-- Permisos de la API: los visitantes leen; lo que puede escribir cada uno lo limitan las políticas de abajo.
+grant select on public.autos to anon;
+grant select, insert, update, delete on public.autos to authenticated;
+grant select, insert, update, delete on public.autos to service_role;
 
 drop policy if exists "autos: todos leen"        on public.autos;
 drop policy if exists "autos: admin inserta"     on public.autos;
@@ -73,6 +80,9 @@ create table if not exists public.config (
 insert into public.config (id) values (1) on conflict (id) do nothing;
 
 alter table public.config enable row level security;
+grant select on public.config to anon;
+grant select, insert, update, delete on public.config to authenticated;
+grant select, insert, update, delete on public.config to service_role;
 
 drop policy if exists "config: todos leen"     on public.config;
 drop policy if exists "config: admin inserta"  on public.config;
