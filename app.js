@@ -143,7 +143,7 @@ function openDetail(id) {
   $("#dPrice").textContent = fmtPrice(c);
   const rows = [
     ["Año", c.anio], ["Kilometraje", c.cero ? "0 km" : fmtKm(c.km)], ["Combustible", c.combustible],
-    ["Transmisión", c.transmision], ["Motor", c.motor], ["Tracción", c.traccion], ["Carrocería", c.carroceria],
+    ["Transmisión", c.transmision], ["Motor", c.motor], ["Tracción", ({ FWD: "Delantera (FWD)", RWD: "Trasera (RWD)", AWD: "Integral (AWD)" })[c.traccion] || c.traccion], ["Carrocería", c.carroceria],
     ["Color", c.color], ["Puertas", c.puertas], ["Equipamiento", c.extras], ["Estado", ESTADOS[c.estado]]
   ];
   $("#dSheet").innerHTML = rows.filter(r => r[1] !== "" && r[1] != null).map(([k, v]) => `<tr><th>${k}</th><td>${esc(v)}</td></tr>`).join("");
