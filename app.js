@@ -275,6 +275,14 @@ $("#carForm").addEventListener("submit", async e => {
     vendido_en: estado === "vendido" ? (editing?.vendido_en || new Date().toISOString()) : null,
     actualizado: new Date().toISOString()
   };
+  // La sesión puede haber caducado si la página lleva mucho rato abierta
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) {
+    btn.disabled = false; btn.textContent = "Guardar vehículo";
+    $("#fMsg").textContent = "Tu sesión ha caducado. Vuelve a entrar con «Acceso vendedor» (abajo del todo) y guarda de nuevo.";
+    return;
+  }
+  let step = "ficha", createdId = null; const uploaded = [];
   try {
     // 1. Guardar la ficha para tener el id
     let id = editing?.id;
@@ -284,9 +292,10 @@ $("#carForm").addEventListener("submit", async e => {
     } else {
       const { data, error } = await sb.from("autos").insert({ ...row, fotos: [] }).select("id").single();
       if (error) throw error;
-      id = data.id;
+      id = createdId = data.id;
     }
     // 2. Subir fotos nuevas en orden
+    step = "fotos";
     const paths = [];
     for (let i = 0; i < pics.length; i++) {
       const p = pics[i];
@@ -295,9 +304,10 @@ $("#carForm").addEventListener("submit", async e => {
       const path = `${id}/${Date.now()}-${i}.jpg`;
       const { error } = await sb.storage.from(BUCKET).upload(path, p.blob, { contentType: "image/jpeg", cacheControl: "31536000" });
       if (error) throw error;
-      paths.push(path);
+      uploaded.push(path); paths.push(path);
     }
     // 3. Guardar el orden de fotos y borrar las que se quitaron
+    step = "orden";
     const { error: e2 } = await sb.from("autos").update({ fotos: paths }).eq("id", id);
     if (e2) throw e2;
     const removed = (editing?.fotos || []).filter(p => !paths.includes(p));
@@ -307,10 +317,21 @@ $("#carForm").addEventListener("submit", async e => {
     toast(editing ? "Vehículo actualizado" : "Vehículo publicado en el catálogo");
     await refresh();
   } catch (err) {
-    console.error(err);
-    $("#fMsg").textContent = /row-level security|permission|not authorized|JWT/i.test(err?.message || "")
-      ? "Tu usuario no tiene permiso de administrador. Revisa el paso 4 del README."
-      : "No se ha podido guardar. Revisa tu conexión e inténtalo de nuevo.";
+    console.error("Error al guardar (" + step + "):", err);
+    // Deshacer lo guardado a medias para no dejar autos sin fotos ni duplicados
+    try {
+      if (uploaded.length) await sb.storage.from(BUCKET).remove(uploaded);
+      if (createdId) await sb.from("autos").delete().eq("id", createdId);
+    } catch (e) { console.warn(e); }
+    const detail = String(err?.message || err?.error || err || "").slice(0, 160);
+    const perm = /row-level security|permission|not authorized|unauthorized|403/i.test(detail);
+    let msg;
+    if (/JWT|expired|token/i.test(detail)) msg = "Tu sesión ha caducado. Vuelve a entrar con «Acceso vendedor» y guarda de nuevo.";
+    else if (perm && step === "fotos") msg = "Supabase no deja subir las fotos (permiso del almacén de fotos).";
+    else if (perm) msg = "Supabase no reconoce tu usuario como administrador.";
+    else if (step === "fotos") msg = "No se ha podido subir una de las fotos. Prueba con menos fotos o revisa tu conexión.";
+    else msg = "No se ha podido guardar. Revisa tu conexión e inténtalo de nuevo.";
+    $("#fMsg").textContent = msg + (detail ? " Detalle: " + detail : "");
   } finally {
     btn.disabled = false; btn.textContent = "Guardar vehículo";
   }
