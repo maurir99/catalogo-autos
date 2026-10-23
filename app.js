@@ -120,7 +120,7 @@ function render() {
     const portada = c.fotos?.[0];
     const specs = [c.anio, c.cero ? "0 km" : fmtKm(c.km), c.transmision, c.combustible].filter(Boolean).map(s => `<span>${esc(s)}</span>`).join("");
     return `<article class="card${c.estado === "vendido" ? " sold" : ""}" data-id="${esc(c.id)}" tabindex="0" role="button" aria-label="${esc(`${c.marca} ${c.modelo} ${c.anio}`)}">
-      <div class="ph">${portada ? `<img src="${esc(fotoUrl(portada))}" alt="" loading="lazy" decoding="async">` : `<div class="noimg">SIN FOTO</div>`}${tag}<span class="price">${esc(fmtPrice(c))}</span></div>
+      <div class="ph">${portada ? `<img class="bg" src="${esc(fotoUrl(portada))}" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fg" src="${esc(fotoUrl(portada))}" alt="" loading="lazy" decoding="async">` : `<div class="noimg">SIN FOTO</div>`}${tag}<span class="price">${esc(fmtPrice(c))}</span></div>
       <div class="cbody"><h3>${esc(c.marca)} ${esc(c.modelo)}<small>${esc([c.carroceria, c.motor, c.color].filter(Boolean).join(" · "))}</small></h3><div class="specs">${specs}</div></div>
       ${admin ? `<div class="adminrow">
         <button class="btn" data-act="edit">Editar</button>
@@ -174,7 +174,7 @@ function openDetail(id) {
   const fotos = (c.fotos || []).map(fotoUrl);
   const main = $("#gMain"), th = $("#gThumbs");
   const show = i => {
-    main.innerHTML = `<img src="${esc(fotos[i])}" alt="${esc(title)} — foto ${i + 1}">`;
+    main.innerHTML = `<img class="bg" src="${esc(fotos[i])}" alt="" aria-hidden="true"><img class="fg" src="${esc(fotos[i])}" alt="${esc(title)} — foto ${i + 1}">`;
     th.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-current", j === i));
   };
   th.innerHTML = fotos.length > 1 ? fotos.map((f, i) => `<button type="button" aria-label="Foto ${i + 1}"><img src="${esc(f)}" alt="" loading="lazy"></button>`).join("") : "";

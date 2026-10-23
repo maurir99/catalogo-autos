@@ -72,7 +72,7 @@ function renderUltimos(cars) {
     const comb = c.combustible === "Nafta" ? "Gasolina" : c.combustible;
     const specs = [c.anio, km, c.transmision, comb].filter(Boolean).map(s => `<span>${esc(s)}</span>`).join("");
     return `<a class="card" href="/vehiculos#auto-${esc(c.id)}">
-      <div class="ph">${portada ? `<img src="${esc(fotoUrl(portada))}" alt="" loading="lazy" decoding="async">` : `<div class="noimg">SIN FOTO</div>`}${tag}<span class="price">${esc(fmtPrice(c))}</span></div>
+      <div class="ph">${portada ? `<img class="bg" src="${esc(fotoUrl(portada))}" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="fg" src="${esc(fotoUrl(portada))}" alt="" loading="lazy" decoding="async">` : `<div class="noimg">SIN FOTO</div>`}${tag}<span class="price">${esc(fmtPrice(c))}</span></div>
       <div class="cbody"><h3>${esc(c.marca)} ${esc(c.modelo)}<small>${esc([c.carroceria, c.motor, c.color].filter(Boolean).join(" · "))}</small></h3><div class="specs">${specs}</div></div>
     </a>`;
   }).join("");
